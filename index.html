@@ -166,12 +166,38 @@
             font-weight: 700;
         }
 
+        .hero-proof {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 7px 12px;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.045);
+            color: var(--color-text-readable);
+            font-size: 0.78rem;
+            line-height: 1.35;
+            text-wrap: balance;
+        }
+
+        .hero-proof::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            background: var(--brand-gradient);
+            box-shadow: 0 0 10px rgba(255, 115, 74, 0.55);
+        }
+
         /* ═══════════════════════════════════════════════
            CONTAINER DO VÍDEO VERTICAL (9:16)
            ═══════════════════════════════════════════════ */
         .video-section {
             position: relative;
-            padding: clamp(30px, 4vw, 50px) 20px;
+            padding: clamp(24px, 3.5vw, 44px) 20px;
             text-align: center;
             flex-grow: 1;
             display: flex;
@@ -185,6 +211,11 @@
             width: 100%;
             max-width: 380px; /* Largura ideal para vídeos na vertical */
             margin: 24px auto 0;
+        }
+
+        .video-wrapper-outer {
+            max-width: 370px;
+            margin: 18px auto 0;
         }
 
         .device-frame {
@@ -216,7 +247,8 @@
             height: 100%;
         }
 
-        .video-container iframe {
+        .video-container iframe,
+        .video-container #yt-player {
             position: absolute;
             top: 0;
             left: 0;
@@ -227,6 +259,44 @@
         }
 
         /* Overlays para desabilitar avanço/cliques indesejados */
+        .fake-video-progress {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: -13px;
+            z-index: 12;
+            height: 5px;
+            border-radius: var(--radius-pill);
+            background: rgba(245, 243, 240, 0.14);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 6px 16px rgba(0, 0, 0, 0.32);
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .fake-video-progress__fill {
+            position: relative;
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: var(--brand-gradient);
+            box-shadow: 0 0 12px rgba(255, 115, 74, 0.42);
+            transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fake-video-progress__fill::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.34) 50%, transparent 100%);
+            animation: progress-shine 2.8s ease-in-out infinite;
+            opacity: 0.36;
+        }
+
+        @keyframes progress-shine {
+            0% { transform: translateX(-100%); }
+            55%, 100% { transform: translateX(100%); }
+        }
+
         .player-touch-guard {
             position: absolute;
             inset: 0;
@@ -240,14 +310,14 @@
             position: absolute;
             inset: 0;
             z-index: 15;
-            background: rgba(10, 10, 10, 0.48);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
+            background: rgba(10, 10, 10, 0.36);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             cursor: pointer;
             transition: opacity 0.4s ease, visibility 0.4s ease;
         }
@@ -259,19 +329,19 @@
         }
 
         .play-button-icon {
-            width: 80px;
-            height: 80px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
-            background: var(--hero-gradient);
+            background: var(--brand-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 35px rgba(255, 115, 74, 0.7), 0 0 0 10px rgba(192, 26, 26, 0.3);
+            box-shadow: 0 0 28px rgba(255, 115, 74, 0.5), 0 0 0 8px rgba(192, 26, 26, 0.22);
             transition: transform 0.2s ease;
         }
 
         .play-overlay:hover .play-button-icon {
-            transform: scale(1.1);
+            transform: scale(1.06);
         }
 
         .play-button-icon.pulsate {
@@ -279,26 +349,26 @@
         }
 
         @keyframes speaker-bounce {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 115, 74, 0.6), 0 0 0 8px rgba(192, 26, 26, 0.25); }
-            50% { transform: scale(1.1); box-shadow: 0 0 45px rgba(255, 115, 74, 0.9), 0 0 0 16px rgba(192, 26, 26, 0); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 24px rgba(255, 115, 74, 0.45), 0 0 0 6px rgba(192, 26, 26, 0.18); }
+            50% { transform: scale(1.06); box-shadow: 0 0 34px rgba(255, 115, 74, 0.68), 0 0 0 14px rgba(192, 26, 26, 0); }
         }
 
         .play-overlay-text {
             font-family: var(--font-display);
-            font-size: 1.3rem;
+            font-size: 1.08rem;
             font-weight: 800;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
             color: #FFFFFF;
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-            animation: text-pulse 2s infinite ease-in-out;
+            animation: text-pulse 2.4s infinite ease-in-out;
         }
 
         .play-overlay-subtext {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             color: var(--color-text-readable);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            text-transform: none;
+            letter-spacing: 0.04em;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
@@ -311,13 +381,21 @@
            BOTÃO CTA DO WHATSAPP (COM DELAY DE 1 MINUTO)
            ═══════════════════════════════════════════════ */
         .cta-container {
-            margin-top: 32px;
+            margin-top: 42px;
             width: 100%;
-            max-width: 440px;
+            max-width: 400px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
             transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s ease;
+        }
+
+        .cta-kicker {
+            margin-bottom: 10px;
+            color: var(--color-text-readable);
+            font-size: 0.92rem;
+            line-height: 1.4;
+            text-align: center;
         }
 
         .cta-container.visible {
@@ -336,33 +414,33 @@
             color: #FFFFFF;
             font-family: var(--font-display);
             font-weight: 800;
-            font-size: 1.25rem;
+            font-size: 1.08rem;
             letter-spacing: 0.05em;
             text-transform: uppercase;
             text-align: center;
             line-height: 1.2;
-            padding: 20px 28px;
+            padding: 17px 24px;
             border-radius: var(--radius-element);
             border: none;
             text-decoration: none;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.18);
             transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
-            animation: pulse-wa 2.5s infinite;
+            animation: pulse-wa 3.6s infinite;
         }
 
         .cta-btn-wa:hover {
             filter: brightness(1.1);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.34);
         }
 
         @keyframes pulse-wa {
             0%, 100% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35), 0 0 0 0 rgba(37, 211, 102, 0.4);
+                box-shadow: 0 4px 16px rgba(37, 211, 102, 0.24), 0 0 0 0 rgba(37, 211, 102, 0.24);
             }
             50% {
-                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6), 0 0 0 12px rgba(37, 211, 102, 0);
+                box-shadow: 0 6px 22px rgba(37, 211, 102, 0.36), 0 0 0 10px rgba(37, 211, 102, 0);
             }
         }
 
@@ -424,18 +502,14 @@
             </p>
 
             <!-- DEVICE MOCKUP COM VÍDEO VERTICAL 9:16 -->
+            <div class="hero-proof">Para corredores que precisam conciliar 10K, 21K e treinos de for&ccedil;a.</div>
+
             <div class="video-wrapper-outer">
                 <div class="device-frame">
                     
                     <!-- Player Div YouTube API -->
                     <div class="video-container">
-                        <iframe id="yt-player" 
-                                src="https://www.youtube.com/embed/TdW4blQWmiQ?enablejsapi=1&autoplay=1&mute=1&controls=0&disablekb=1&modestbranding=1&rel=0&showinfo=0&fs=0&playsinline=1"
-                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: auto;"
-                                allow="autoplay; encrypted-media"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen>
-                        </iframe>
+                        <div id="yt-player"></div>
                     </div>
 
                     <!-- Guard Overlay que impede toque na barra de progresso do YouTube -->
@@ -449,15 +523,19 @@
                                 <path d="M3.63 3.63L2.37 4.89 7.48 10H3v4h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.03c1.38-.31 2.63-.95 3.69-1.81l2.42 2.42 1.27-1.27L3.63 3.63zM12 4L9.91 6.09 12 8.18V4zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71z"/>
                             </svg>
                         </div>
-                        <span class="play-overlay-text" id="overlayText">🔊 Clique para ativar o som</span>
-                        <span class="play-overlay-subtext" id="overlaySubtext">O vídeo já começou a rodar...</span>
+                        <span class="play-overlay-text" id="overlayText">Ativar som</span>
+                        <span class="play-overlay-subtext" id="overlaySubtext">Toque para assistir com &aacute;udio</span>
                     </div>
 
+                </div>
+                <div class="fake-video-progress" aria-hidden="true">
+                    <div class="fake-video-progress__fill" id="fakeProgressFill"></div>
                 </div>
             </div>
 
             <!-- BOTÃO CTA (Exibido após 1 minuto / 60 segundos) -->
             <div class="cta-container" id="ctaContainer">
+                <p class="cta-kicker">Se esse m&eacute;todo fez sentido, o pr&oacute;ximo passo &eacute; entrar no time.</p>
                 <a href="https://wa.me/5592991118886?text=Fala%2C%20Velame%21%20Assisti%20o%20v%C3%ADdeo%20e%20quero%20entrar%20pro%20time." 
                    target="_blank" 
                    rel="noopener noreferrer" 
@@ -483,7 +561,11 @@
         let player;
         const videoId = 'TdW4blQWmiQ';
         const delaySeconds = 60; // 1 minuto de delay
+        const fakeVideoTotalSeconds = 16 * 60;
+        const fakeProgressFastSeconds = 60;
+        const fakeProgressFastPercent = 40;
         let checkTimerInterval = null;
+        let fakeProgressInterval = null;
         let hasUnmuted = false; // Controle de ativação inicial do áudio
 
         // Detecção do protocolo local file:// para alertar sobre restrições do YouTube
@@ -508,9 +590,22 @@
         function onYouTubeIframeAPIReady() {
             // Inicializa vinculando ao iframe estático existente
             player = new YT.Player('yt-player', {
+                videoId,
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    controls: 0,
+                    disablekb: 1,
+                    modestbranding: 1,
+                    rel: 0,
+                    fs: 0,
+                    playsinline: 1,
+                    origin: window.location.origin
+                },
                 events: {
                     'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+                    'onStateChange': onPlayerStateChange,
+                    'onError': onPlayerError
                 }
             });
         }
@@ -520,6 +615,7 @@
             // Garante autoplay mutado
             event.target.mute();
             event.target.playVideo();
+            updateFakeProgressBar();
         }
 
         function onPlayerStateChange(event) {
@@ -531,7 +627,10 @@
                     playOverlay.classList.add('hidden');
                 }
                 startCtaTimer();
+                startFakeProgressBar();
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                updateFakeProgressBar(event.data === YT.PlayerState.ENDED);
+                stopFakeProgressBar();
                 // Ao pausar, mostra o overlay customizado dependendo se o áudio já foi ativado
                 updateOverlayContent();
                 playOverlay.classList.remove('hidden');
@@ -539,14 +638,33 @@
         }
 
         // Atualiza dinamicamente o texto e ícone do overlay dependendo do status do áudio
+        function onPlayerError(event) {
+            const playOverlay = document.getElementById('playOverlay');
+            const overlayText = document.getElementById('overlayText');
+            const overlaySubtext = document.getElementById('overlaySubtext');
+            const overlayIconContainer = document.getElementById('overlayIconContainer');
+
+            if (event.data === 153 && window.location.protocol === 'file:') {
+                overlayText.innerText = "Abra por HTTP";
+                overlaySubtext.innerText = "Use o servidor local para o YouTube validar a origem.";
+            } else {
+                overlayText.innerText = "Nao foi possivel carregar";
+                overlaySubtext.innerText = "Recarregue a pagina ou tente novamente em instantes.";
+            }
+
+            overlayIconContainer.classList.remove('pulsate');
+            playOverlay.classList.remove('hidden');
+            stopFakeProgressBar();
+        }
+
         function updateOverlayContent() {
             const overlayText = document.getElementById('overlayText');
             const overlaySubtext = document.getElementById('overlaySubtext');
             const overlayIconContainer = document.getElementById('overlayIconContainer');
 
             if (!hasUnmuted) {
-                overlayText.innerText = "🔊 Clique para ativar o som";
-                overlaySubtext.innerText = "O vídeo já começou a rodar...";
+                overlayText.innerText = "Ativar som";
+                overlaySubtext.innerText = "Toque para assistir com áudio";
                 overlayIconContainer.classList.add('pulsate');
                 overlayIconContainer.innerHTML = `
                     <svg id="unmuteIcon" width="32" height="32" viewBox="0 0 24 24" fill="#FFFFFF">
@@ -566,6 +684,43 @@
         }
 
         // Monitora o tempo de execução do vídeo para exibir o botão do WhatsApp exatamente aos 60s
+        function calculateFakeProgress(currentTime) {
+            const safeCurrentTime = Math.max(0, Math.min(currentTime, fakeVideoTotalSeconds));
+
+            if (safeCurrentTime <= fakeProgressFastSeconds) {
+                return (safeCurrentTime / fakeProgressFastSeconds) * fakeProgressFastPercent;
+            }
+
+            const remainingTime = fakeVideoTotalSeconds - fakeProgressFastSeconds;
+            const remainingPercent = 100 - fakeProgressFastPercent;
+            const slowProgress = ((safeCurrentTime - fakeProgressFastSeconds) / remainingTime) * remainingPercent;
+
+            return fakeProgressFastPercent + slowProgress;
+        }
+
+        function updateFakeProgressBar(forceComplete = false) {
+            const progressFill = document.getElementById('fakeProgressFill');
+            if (!progressFill || !player || typeof player.getCurrentTime !== 'function') return;
+
+            const currentTime = forceComplete ? fakeVideoTotalSeconds : player.getCurrentTime();
+            const fakeProgress = Math.min(100, calculateFakeProgress(currentTime));
+            progressFill.style.width = `${fakeProgress}%`;
+        }
+
+        function startFakeProgressBar() {
+            if (fakeProgressInterval) return;
+
+            updateFakeProgressBar();
+            fakeProgressInterval = setInterval(updateFakeProgressBar, 250);
+        }
+
+        function stopFakeProgressBar() {
+            if (!fakeProgressInterval) return;
+
+            clearInterval(fakeProgressInterval);
+            fakeProgressInterval = null;
+        }
+
         function startCtaTimer() {
             if (checkTimerInterval) return;
 
