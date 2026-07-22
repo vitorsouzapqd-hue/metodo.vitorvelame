@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Como conciliar corrida e musculação em 5 passos — Protocolo Ignição</title>
+    <meta name="description" content="Descubra os 5 passos essenciais para conciliar treino de corrida e musculação sem perder rendimento ou quebrar no meio do processo.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ═══════════════════════════════════════════════
+           DESIGN TOKENS & IDENTIDADE VISUAL
+           ═══════════════════════════════════════════════ */
+        :root,
+        [data-theme="dark"] {
+            --color-bg: #282827;
+            --color-surface: #1A1A1A;
+            --color-surface-mid: #1A1A1A;
+            --color-surface-low: #131313;
+            --color-text-primary: #F5F3F0;
+            --color-text-readable: #C9C5BD;
+            --color-text-disabled: #9A9895;
+            --color-action-primary: #C01A1A;
+            --color-accent-cold: #D88CEE;
+            --color-whatsapp: #25D366;
+            --color-border-subtle: rgba(255, 255, 255, 0.1);
+            --color-border: #383836;
+
+            --font-display: "Barlow Condensed", "Inter", sans-serif;
+            --radius-container: 24px;
+            --radius-element: 12px;
+            --radius-pill: 9999px;
+
+            --brand-gradient: linear-gradient(90deg, #C01A1A 0%, #E8442A 30%, #FF734A 50%, #D88CEE 100%);
+            --hero-gradient: linear-gradient(to right, #D43B27 0%, #C01A1A 100%);
+            --wa-gradient: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        [data-theme="light"] {
+            --color-bg: #F0ECE6;
+            --color-surface: #F5F3F0;
+            --color-surface-mid: #F5F3F0;
+            --color-surface-low: #FFFFFF;
+            --color-text-primary: #1A1A18;
+            --color-text-readable: #4A4845;
+            --color-text-disabled: #A09A94;
+            --color-action-primary: #C01A1A;
+            --color-accent-cold: #9B3FC0;
+            --color-border-subtle: rgba(0, 0, 0, 0.1);
+            --color-border: #DDD8D0;
+        }
+
+        .local-warning {
+            display: none;
+            background: rgba(239, 68, 68, 0.1);
+            border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+            color: #EF4444;
+            padding: 14px 24px;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            z-index: 100;
+            line-height: 1.4;
+        }
+
+        .local-warning code {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #FFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: var(--font-display);
+            font-weight: 800;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ANIMAÇÕES E EFEITOS
+           ═══════════════════════════════════════════════ */
+        @keyframes ig-breath {
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(1.06); }
+        }
+
+        .ig-hero-glow {
+            animation: ig-breath 9s ease-in-out infinite;
+        }
+        .ig-hero-glow-b {
+            animation-delay: -4s;
+        }
+
+        @keyframes flame-glow {
+            0%, 100% { filter: drop-shadow(0 0 2px #C01A1A) drop-shadow(0 0 5px #FF734A); }
+            50% { filter: drop-shadow(0 0 4px #C01A1A) drop-shadow(0 0 12px #FF734A); }
+        }
+
+        @keyframes flame-flicker {
+            0%, 100% { transform: scale(1) translateY(0) rotate(-1deg); opacity: 0.8; }
+            25% { transform: scale(1.05) translateY(-2px) rotate(1deg); opacity: 1; }
+            50% { transform: scale(0.95) translateY(0) rotate(-2deg); opacity: 0.9; }
+            75% { transform: scale(1.08) translateY(-1px) rotate(2deg); opacity: 1; }
+        }
+
+        .flame-icon {
+            animation: flame-glow 2s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        .flame-part {
+            transform-origin: bottom center;
+            animation: flame-flicker 1.5s infinite ease-in-out;
+        }
+        .flame-part-1 { animation-delay: 0s; fill: #C01A1A; opacity: 0.9; }
+        .flame-part-2 { animation-delay: 0.3s; fill: #FF734A; opacity: 0.95; }
+        .flame-part-3 { animation-delay: 0.6s; fill: #FBBF24; opacity: 1; }
+
+        .grad-text {
+            background-image: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid rgba(192, 26, 26, 0.32);
+            background: rgba(192, 26, 26, 0.08);
+            border-radius: var(--radius-pill);
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+            font-weight: 700;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CONTAINER DO VÍDEO VERTICAL (9:16)
+           ═══════════════════════════════════════════════ */
+        .video-section {
+            position: relative;
+            padding: clamp(30px, 4vw, 50px) 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-wrapper-outer {
+            position: relative;
+            width: 100%;
+            max-width: 380px; /* Largura ideal para vídeos na vertical */
+            margin: 24px auto 0;
+        }
+
+        .device-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            background: #000000;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 0 0 1px rgba(0, 0, 0, 0.8),
+                0 25px 60px -15px rgba(0, 0, 0, 0.9),
+                0 0 50px rgba(192, 26, 26, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .device-frame:hover {
+            box-shadow: 
+                0 0 0 1px rgba(0, 0, 0, 0.8),
+                0 30px 70px -15px rgba(0, 0, 0, 0.95),
+                0 0 60px rgba(255, 115, 74, 0.35);
+        }
+
+        /* Standard YouTube IFrame inside 9:16 aspect ratio */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 177.77777778vh; /* Scale to cover 9:16 vertically without black bars */
+            height: 100%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%) scale(1.35); /* Preenche totalmente a tela vertical */
+            pointer-events: auto;
+        }
+
+        /* Overlays para desabilitar avanço/cliques indesejados */
+        .player-touch-guard {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        /* Controles Customizados de Play/Unmute */
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 15;
+            background: rgba(19, 19, 19, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .play-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .play-button-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--hero-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 35px rgba(255, 115, 74, 0.7), 0 0 0 10px rgba(192, 26, 26, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .play-overlay:hover .play-button-icon {
+            transform: scale(1.1);
+        }
+
+        .play-button-icon.pulsate {
+            animation: speaker-bounce 1.5s infinite ease-in-out;
+        }
+
+        @keyframes speaker-bounce {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 115, 74, 0.6), 0 0 0 8px rgba(192, 26, 26, 0.25); }
+            50% { transform: scale(1.1); box-shadow: 0 0 45px rgba(255, 115, 74, 0.9), 0 0 0 16px rgba(192, 26, 26, 0); }
+        }
+
+        .play-overlay-text {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            animation: text-pulse 2s infinite ease-in-out;
+        }
+
+        .play-overlay-subtext {
+            font-size: 0.85rem;
+            color: var(--color-text-readable);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        @keyframes text-pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        /* ═══════════════════════════════════════════════
+           BOTÃO CTA DO WHATSAPP (COM DELAY DE 1 MINUTO)
+           ═══════════════════════════════════════════════ */
+        .cta-container {
+            margin-top: 32px;
+            width: 100%;
+            max-width: 440px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s ease;
+        }
+
+        .cta-container.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .cta-btn-wa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            background: var(--wa-gradient);
+            color: #FFFFFF;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.2;
+            padding: 20px 28px;
+            border-radius: var(--radius-element);
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+            animation: pulse-wa 2.5s infinite;
+        }
+
+        .cta-btn-wa:hover {
+            filter: brightness(1.1);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes pulse-wa {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35), 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6), 0 0 0 12px rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Footer simples */
+        footer {
+            padding: 24px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-text-disabled);
+            border-top: 1px solid var(--color-border-subtle);
+            background: var(--color-surface-low);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- THEME TOGGLE FAB -->
+    <button type="button" id="themeToggle" aria-label="Mudar Tema"
+        style="position:fixed; top:20px; right:20px; z-index:60; width:44px; height:44px; border-radius:var(--radius-pill); background:color-mix(in srgb, var(--color-surface) 78%, transparent); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border:1px solid var(--color-border-subtle); color:var(--color-text-primary); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 8px 24px -8px rgba(0,0,0,0.45); transition:transform 0.2s ease, background 0.2s ease;"
+        onmouseenter="this.style.transform='scale(1.06)'" onmouseleave="this.style.transform='scale(1)'">
+        <svg id="iconSun" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg id="iconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <!-- SECTION PRINCIPAL -->
+    <section class="video-section">
+
+        <!-- TEXTURA DE FUNDO E GLOWS -->
+        <div style="position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.04; background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E&quot;);"></div>
+        <canvas id="heroSparks" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; opacity:0.8;"></canvas>
+        
+        <div class="ig-hero-glow ig-hero-glow-a" style="position:absolute; top:-180px; right:-12%; width:560px; height:560px; background:radial-gradient(circle, rgba(216,140,238,0.14) 0%, rgba(216,140,238,0) 65%); pointer-events:none; filter:blur(10px);"></div>
+        <div class="ig-hero-glow ig-hero-glow-b" style="position:absolute; bottom:-180px; left:-12%; width:520px; height:520px; background:radial-gradient(circle, rgba(192,26,26,0.16) 0%, rgba(192,26,26,0) 65%); pointer-events:none; filter:blur(10px);"></div>
+
+        <div style="max-width: 720px; margin: 0 auto; position: relative; z-index: 2;">
+            
+            <!-- BADGE / EYEBROW -->
+            <div>
+                <span class="eyebrow">
+                    <span class="flame-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="flame-part flame-part-1" d="M12 22C16.4183 22 20 18.4183 20 14C20 9.58172 12 2 12 2C12 2 4 9.58172 4 14C4 18.4183 7.58172 22 12 22Z" />
+                            <path class="flame-part flame-part-2" d="M12 20C14.2091 20 16 18.2091 16 16C16 13.7909 12 6 12 6C12 6 8 13.7909 8 16C8 18.2091 9.79086 20 12 20Z" />
+                            <path class="flame-part flame-part-3" d="M12 18C13.1046 18 14 17.1046 14 16C14 14.8954 12 10 12 10C12 10 10 14.8954 10 16C10 17.1046 10.8954 18 12 18Z" />
+                        </svg>
+                    </span>
+                    Protocolo Ignição — Alta Performance
+                </span>
+            </div>
+
+            <!-- HEADLINE -->
+            <h1 style="font-family:var(--font-display); font-weight:800; font-size:clamp(2rem, 5.5vw, 3.2rem); letter-spacing:-0.03em; line-height:1.1; color:var(--color-text-primary); margin:20px 0 0; text-wrap:balance;">
+                Como conciliar corrida e musculação <span class="grad-text">em 5 passos</span>
+            </h1>
+
+            <p style="font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--color-text-readable); margin-top: 10px;">
+                Assista ao vídeo abaixo para entender o método antes de dar o próximo passo:
+            </p>
+
+            <!-- DEVICE MOCKUP COM VÍDEO VERTICAL 9:16 -->
+            <div class="video-wrapper-outer">
+                <div class="device-frame">
+                    
+                    <!-- Player Div YouTube API -->
+                    <div class="video-container">
+                        <iframe id="yt-player" 
+                                src="https://www.youtube.com/embed/NuZc4h3BhNA?enablejsapi=1&autoplay=1&mute=1&controls=0&disablekb=1&modestbranding=1&rel=0&showinfo=0&fs=0&playsinline=1"
+                                style="position: absolute; top: 50%; left: 50%; width: 177.77777778vh; height: 100%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%) scale(1.35); pointer-events: auto; border: none;"
+                                allow="autoplay; encrypted-media"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <!-- Guard Overlay que impede toque na barra de progresso do YouTube -->
+                    <div class="player-touch-guard" id="touchGuard" title="Clique para reproduzir/pausar"></div>
+
+                    <!-- Custom Play/Unmute Overlay -->
+                    <div class="play-overlay" id="playOverlay">
+                        <div class="play-button-icon pulsate" id="overlayIconContainer">
+                            <!-- Ícone de alto-falante mutado piscando para sinalizar som desativado -->
+                            <svg id="unmuteIcon" width="32" height="32" viewBox="0 0 24 24" fill="#FFFFFF">
+                                <path d="M3.63 3.63L2.37 4.89 7.48 10H3v4h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.03c1.38-.31 2.63-.95 3.69-1.81l2.42 2.42 1.27-1.27L3.63 3.63zM12 4L9.91 6.09 12 8.18V4zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71z"/>
+                            </svg>
+                        </div>
+                        <span class="play-overlay-text" id="overlayText">🔊 Clique para ativar o som</span>
+                        <span class="play-overlay-subtext" id="overlaySubtext">O vídeo já começou a rodar...</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BOTÃO CTA (Exibido após 1 minuto / 60 segundos) -->
+            <div class="cta-container" id="ctaContainer">
+                <a href="https://wa.me/5592991118886?text=Fala%2C%20Velame%21%20Assisti%20o%20v%C3%ADdeo%20e%20quero%20entrar%20pro%20time." 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="cta-btn-wa">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    Quero entrar para o time
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© Protocolo Ignição. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- YOUTUBE IFRAME PLAYER API -->
+    <script>
+        // 1. YouTube IFrame API Setup
+        let player;
+        const videoId = 'NuZc4h3BhNA';
+        const delaySeconds = 60; // 1 minuto de delay
+        let checkTimerInterval = null;
+        let hasUnmuted = false; // Controle de ativação inicial do áudio
+
+        // Detecção do protocolo local file:// para alertar sobre restrições do YouTube
+        if (window.location.protocol === 'file:') {
+            const warningDiv = document.createElement('div');
+            warningDiv.className = 'local-warning';
+            warningDiv.style.display = 'block';
+            warningDiv.innerHTML = `
+                ⚠️ <strong>Aviso de Política de Segurança do YouTube:</strong> Você abriu o arquivo HTML diretamente (<code>file://</code>). 
+                O player do YouTube exige segurança HTTP/HTTPS para validar a origem da reprodução (causando o Erro 153/150). 
+                Para testar corretamente com vídeo, use um servidor local (como a extensão <strong>Live Server</strong> no VS Code ou executando <code>npx serve</code>).
+            `;
+            document.body.insertBefore(warningDiv, document.body.firstChild);
+        }
+
+        // Carrega a API do YouTube dinamicamente
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            // Inicializa vinculando ao iframe estático existente
+            player = new YT.Player('yt-player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            console.log("Player YouTube Pronto");
+            // Garante autoplay mutado
+            event.target.mute();
+            event.target.playVideo();
+        }
+
+        function onPlayerStateChange(event) {
+            const playOverlay = document.getElementById('playOverlay');
+            
+            if (event.data === YT.PlayerState.PLAYING) {
+                // Se já ativou o áudio, esconde o overlay
+                if (hasUnmuted) {
+                    playOverlay.classList.add('hidden');
+                }
+                startCtaTimer();
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                // Ao pausar, mostra o overlay customizado dependendo se o áudio já foi ativado
+                updateOverlayContent();
+                playOverlay.classList.remove('hidden');
+            }
+        }
+
+        // Atualiza dinamicamente o texto e ícone do overlay dependendo do status do áudio
+        function updateOverlayContent() {
+            const overlayText = document.getElementById('overlayText');
+            const overlaySubtext = document.getElementById('overlaySubtext');
+            const overlayIconContainer = document.getElementById('overlayIconContainer');
+
+            if (!hasUnmuted) {
+                overlayText.innerText = "🔊 Clique para ativar o som";
+                overlaySubtext.innerText = "O vídeo já começou a rodar...";
+                overlayIconContainer.classList.add('pulsate');
+                overlayIconContainer.innerHTML = `
+                    <svg id="unmuteIcon" width="32" height="32" viewBox="0 0 24 24" fill="#FFFFFF">
+                        <path d="M3.63 3.63L2.37 4.89 7.48 10H3v4h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.03c1.38-.31 2.63-.95 3.69-1.81l2.42 2.42 1.27-1.27L3.63 3.63zM12 4L9.91 6.09 12 8.18V4zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71z"/>
+                    </svg>
+                `;
+            } else {
+                overlayText.innerText = "Vídeo Pausado";
+                overlaySubtext.innerText = "Clique para continuar assistindo";
+                overlayIconContainer.classList.remove('pulsate');
+                overlayIconContainer.innerHTML = `
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="#FFFFFF">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                `;
+            }
+        }
+
+        // Monitora o tempo de execução do vídeo para exibir o botão do WhatsApp exatamente aos 60s
+        function startCtaTimer() {
+            if (checkTimerInterval) return;
+
+            checkTimerInterval = setInterval(() => {
+                if (player && typeof player.getCurrentTime === 'function') {
+                    const currentTime = player.getCurrentTime();
+                    if (currentTime >= delaySeconds) {
+                        showCtaButton();
+                        clearInterval(checkTimerInterval);
+                    }
+                }
+            }, 500);
+        }
+
+        function showCtaButton() {
+            const ctaContainer = document.getElementById('ctaContainer');
+            if (ctaContainer) {
+                ctaContainer.classList.add('visible');
+            }
+        }
+
+        // Cliques no Guard Overlay ou Play Overlay
+        document.getElementById('playOverlay').addEventListener('click', handlePlayerInteraction);
+        document.getElementById('touchGuard').addEventListener('click', handlePlayerInteraction);
+
+        function handlePlayerInteraction() {
+            if (!player || typeof player.getPlayerState !== 'function') return;
+
+            const playOverlay = document.getElementById('playOverlay');
+
+            if (!hasUnmuted) {
+                // Primeiro clique: Ativa o som, define volume máximo e reinicia o vídeo do zero (0s)
+                player.unMute();
+                player.setVolume(100);
+                player.seekTo(0);
+                player.playVideo();
+                hasUnmuted = true;
+                playOverlay.classList.add('hidden');
+            } else {
+                // Cliques subsequentes: Funciona como Play/Pause comum
+                const state = player.getPlayerState();
+                if (state === YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+            }
+        }
+
+        // 2. Toggle de Tema (Escuro / Claro)
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const iconSun = document.getElementById('iconSun');
+        const iconMoon = document.getElementById('iconMoon');
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+
+            if (newTheme === 'light') {
+                iconSun.style.display = 'block';
+                iconMoon.style.display = 'none';
+            } else {
+                iconSun.style.display = 'none';
+                iconMoon.style.display = 'block';
+            }
+        });
+
+        // 3. Canvas de Faíscas / Sparks
+        (function initSparks() {
+            const canvas = document.getElementById('heroSparks');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let width, height;
+
+            function resize() {
+                width = canvas.width = canvas.parentElement.clientWidth;
+                height = canvas.height = canvas.parentElement.clientHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const particles = [];
+            const particleCount = 35;
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 2 + 0.8,
+                    speedY: -(Math.random() * 0.8 + 0.3),
+                    speedX: (Math.random() - 0.5) * 0.4,
+                    opacity: Math.random() * 0.7 + 0.3,
+                    color: Math.random() > 0.4 ? '#FF734A' : '#C01A1A'
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    if (p.y < -10) {
+                        p.y = height + 10;
+                        p.x = Math.random() * width;
+                    }
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.opacity;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+    </script>
+</body>
+
+</html>
