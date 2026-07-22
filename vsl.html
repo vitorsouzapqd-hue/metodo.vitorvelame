@@ -240,9 +240,9 @@
             position: absolute;
             inset: 0;
             z-index: 15;
-            background: rgba(19, 19, 19, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(10, 10, 10, 0.48);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -597,15 +597,23 @@
             const playOverlay = document.getElementById('playOverlay');
 
             if (!hasUnmuted) {
-                // Primeiro clique: Ativa o som, define volume máximo e reinicia o vídeo do zero (0s)
-                player.unMute();
-                player.setVolume(100);
-                player.seekTo(0);
+                // Primeiro clique: garante que o vídeo está a rodar (corrige iOS Safari)
+                // 1. Muta e força o play (o gesto do utilizador desbloqueio o autoplay no mobile)
+                player.mute();
                 player.playVideo();
+
+                // 2. Após um breve delay, desmuta e reinicia do segundo zero com som
+                setTimeout(() => {
+                    player.seekTo(0);
+                    player.unMute();
+                    player.setVolume(100);
+                    player.playVideo();
+                }, 300);
+
                 hasUnmuted = true;
                 playOverlay.classList.add('hidden');
             } else {
-                // Cliques subsequentes: Funciona como Play/Pause comum
+                // Cliques subsequentes: funciona como Play/Pause comum
                 const state = player.getPlayerState();
                 if (state === YT.PlayerState.PLAYING) {
                     player.pauseVideo();
